@@ -4,6 +4,8 @@
  ## Usage
 
  ```bash
+ docker-compose up -d
+ docker ps
  celery -A celery_config worker --loglevel=info --pool=processes
  ```
 

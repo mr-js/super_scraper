@@ -1,0 +1,5 @@
+aiohttp
+nodriver
+celery
+redis
+lxml
