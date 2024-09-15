@@ -1,5 +1,7 @@
 aiohttp
+aiohttp_socks
 nodriver
 celery
 redis
+tqdm
 lxml
