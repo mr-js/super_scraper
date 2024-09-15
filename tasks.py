@@ -9,6 +9,29 @@ response_data = []
 
 
 @app.task
+def scrape_proxies():
+    return asyncio.run(fetch_proxies())
+
+
+async def fetch_proxies():
+    proxies = {}
+    url = 'https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&proxy_format=protocolipport&format=text'
+    driver = await uc.start(browser_args=['--lang=en', '--headless=chrome', f"--proxy-server=socks5://127.0.0.1:2080"])
+    tab = None
+    try:
+        tab = await driver.get(url)
+        content = await tab.select('pre')
+        proxies = content.text.split('\n')
+    except Exception as e:
+        pass
+    finally:
+        if tab:
+            await tab.close()            
+        driver.stop()
+        return proxies
+
+
+@app.task
 def scrape_data(url, mode, proxy, timeout=10):
     if mode == 0:
         return asyncio.run(fetch_data_by_request(url, proxy, timeout=timeout))
@@ -23,7 +46,6 @@ async def fetch_data_by_request(url, proxy, timeout):
         sock_connect=timeout, # Maximal number of seconds for connecting to a peer for a new connection, not given from a pool. See also connect.
         sock_read=timeout # Maximal number of seconds for reading a portion of data from a peer
     )
-
     client_args = dict(
         trust_env=True,
         timeout=my_timeout

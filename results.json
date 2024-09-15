@@ -1,0 +1,14 @@
+[
+    {
+        "id": "7dc6a263",
+        "name": "Task 0",
+        "url": "https://api.ipify.org/?format=json",
+        "result": "<html><head><meta name=\"color-scheme\" content=\"light dark\"><meta charset=\"utf-8\"></head><body><pre>{\"ip\":\"49.36.211.216\"}</pre><div class=\"json-formatter-container\"></div></body></html>"
+    },
+    {
+        "id": "7f79e888",
+        "name": "Task 1",
+        "url": "https://api.ipify.org/?format=json",
+        "result": "<html><head><meta name=\"color-scheme\" content=\"light dark\"><meta charset=\"utf-8\"></head><body><pre>{\"ip\":\"187.251.224.25\"}</pre><div class=\"json-formatter-container\"></div></body></html>"
+    }
+]
